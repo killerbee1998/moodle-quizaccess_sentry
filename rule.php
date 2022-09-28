@@ -15,18 +15,109 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the quizaccess_honestycheck plugin.
+ * Version information for the quizaccess_sentry plugin.
  *
  * @package   quizaccess_sentry
  * @copyright 2022 Riasat Mahbub <riasat.mahbub@brainstation-23.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- 
+
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/mod/quiz/accessrule/accessrulebase.php');
 
 class quizaccess_sentry extends quiz_access_rule_base {
+    public function is_preflight_check_required($attemptid) {
+        return empty($attemptid);
+    }
 
+    public function add_preflight_check_form_fields(
+        mod_quiz_preflight_check_form $quizform,
+        MoodleQuickForm $mform,
+        $attemptid
+    ) {
+
+        $mform->addElement(
+            'header',
+            'sentryheader',
+            get_string('sentryheader', 'quizaccess_sentry')
+        );
+        $mform->addElement(
+            'static',
+            'sentrymessage',
+            '',
+            get_string('sentrystatement', 'quizaccess_sentry')
+        );
+        $mform->addElement(
+            'checkbox',
+            'sentry',
+            '',
+            get_string('sentrylabel', 'quizaccess_sentry')
+        );
+    }
+
+    public function validate_preflight_check($data, $files, $errors, $attemptid) {
+        if (empty($data['sentry'])) {
+            $errors['sentry'] = get_string('youmustagree', 'quizaccess_sentry');
+        }
+
+        return $errors;
+    }
+
+    public static function make(quiz $quizobj, $timenow, $canignoretimelimits) {
+
+        if (empty($quizobj->get_quiz()->sentryrequired)) {
+            return null;
+        }
+
+        return new self($quizobj, $timenow);
+    }
+
+    public static function add_settings_form_fields(
+        mod_quiz_mod_form $quizform,
+        MoodleQuickForm $mform
+    ) {
+        $mform->addElement(
+            'select',
+            'sentryrequired',
+            get_string('sentryrequired', 'quizaccess_sentry'),
+            array(
+                0 => get_string('notrequired', 'quizaccess_sentry'),
+                1 => get_string('sentryrequiredoption', 'quizaccess_sentry'),
+            )
+        );
+        $mform->addHelpButton(
+            'sentryrequired',
+            'sentryrequired',
+            'quizaccess_sentry'
+        );
+    }
+
+    public static function save_settings($quiz) {
+        global $DB;
+        if (empty($quiz->sentryrequired)) {
+            $DB->delete_records('quizaccess_sentry', array('quizid' => $quiz->id));
+        } else {
+            if (!$DB->record_exists('quizaccess_sentry', array('quizid' => $quiz->id))) {
+                $record = new stdClass();
+                $record->quizid = $quiz->id;
+                $record->sentryrequired = 1;
+                $DB->insert_record('quizaccess_sentry', $record);
+            }
+        }
+    }
+
+    public static function delete_settings($quiz) {
+        global $DB;
+        $DB->delete_records('quizaccess_sentry', array('quizid' => $quiz->id));
+    }
+
+    public static function get_settings_sql($quizid) {
+        return array(
+            'sentryrequired',
+            'LEFT JOIN {quizaccess_sentry} sentry ON sentry.quizid = quiz.id',
+            array()
+        );
+    }
 }

@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information for the quizaccess_honestycheck plugin.
+ * Version information for the quizaccess_sentry plugin.
  *
  * @package   quizaccess_sentry
  * @copyright 2022 Riasat Mahbub <riasat.mahbub@brainstation-23.com>
@@ -26,3 +26,11 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Sentry Plugin';
+
+$string['sentryheader'] = 'Please read the following message';
+$string['sentrylabel'] = 'I have read and agree to the above statement.';
+$string['sentryrequired'] = 'Students cognisance of plagiarism policy';
+$string['sentryrequired_help'] = 'If you enable this option, students will not be able to start an attempt until they have ticked a check-box confirming that they are aware of the policy on academic honesty.';
+$string['sentryrequiredoption'] = 'must be acknowledged before starting an attempt';
+$string['sentrystatement'] = 'I understand that it is important that the attempt I am about to make is all my own work. I understand what constitutes plagiarism or cheating, and I will not undertake such activities.';
+$string['notrequired'] = 'not required';
