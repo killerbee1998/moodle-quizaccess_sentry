@@ -34,3 +34,5 @@ $string['sentryrequired_help'] = 'If you enable this option, students will not b
 $string['sentryrequiredoption'] = 'must be acknowledged before starting an attempt';
 $string['sentrystatement'] = 'I understand that it is important that the attempt I am about to make is all my own work. I understand what constitutes plagiarism or cheating, and I will not undertake such activities.';
 $string['notrequired'] = 'not required';
+$string['youmustagree'] = 'You must agree to this statement before you start the quiz.';
+$string['privacy:metadata'] = 'The Acknowledge plagiarism statement access rule plugin does not store any personal data.';
