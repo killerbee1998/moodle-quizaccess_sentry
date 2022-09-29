@@ -37,8 +37,8 @@ class quizaccess_sentry_external extends external_api {
         return new external_function_parameters(
             array(
                 'event_type' => new external_value(PARAM_TEXT, 'event_type'),
-                'userid' => new external_value(PARAM_TEXT, 'userid'),
-                'timecaught' => new external_value(PARAM_TEXT, 'timecaught')
+                'userid' => new external_value(PARAM_INT, 'userid'),
+                'timecaught' => new external_value(PARAM_INT, 'timecaught')
             )
         );
     }
@@ -76,8 +76,8 @@ class quizaccess_sentry_external extends external_api {
         return new external_single_structure(
             array(
                 'event_type' => new external_value(PARAM_TEXT, 'event_type'),
-                'userid' => new external_value(PARAM_TEXT, 'userid'),
-                'timecaught' => new external_value(PARAM_TEXT, 'timecaught'),
+                'userid' => new external_value(PARAM_INT, 'userid'),
+                'timecaught' => new external_value(PARAM_INT, 'timecaught'),
                 'warnings' => new external_warnings()
             )
         );
