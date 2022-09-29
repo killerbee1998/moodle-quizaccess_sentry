@@ -23,14 +23,20 @@
 export const setup = () => {
 
     window.addEventListener("visibilitychange", () => {
-        if(window.hidden){
+        if (window.hidden) {
             alert("Tab Switched");
         }
     });
 
     window.addEventListener('resize', () => {
         alert("Resized");
-    }, false);
+    });
+
+    window.addEventListener('keydown', (event) => {
+        if (event.key === "F12") {
+            alert("F12 pressed");
+        }
+    });
 
     window.addEventListener('copy', (event) => {
         const selection = window.getSelection();
