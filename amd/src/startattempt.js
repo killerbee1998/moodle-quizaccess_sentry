@@ -23,7 +23,7 @@
 export const setup = () => {
 
     window.addEventListener("visibilitychange", () => {
-        if (window.hidden) {
+        if (document.hidden) {
             alert("Tab Switched");
         }
     });
