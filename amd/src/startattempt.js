@@ -22,13 +22,15 @@
 
 export const setup = () => {
 
-    document.addEventListener("visibilitychange", (event) => {
+    document.addEventListener("visibilitychange", () => {
         if(document.hidden){
             alert("Tab Switched");
         }
-        event.preventDefault();
     });
 
+    window.addEventListener('resize', () => {
+        alert("Resized");
+    }, false);
 
     document.addEventListener('copy', (event) => {
         const selection = document.getSelection();
