@@ -19,13 +19,23 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// import $ from 'jquery';
+
 const source = document.querySelector('body');
 
 export const setup = () => {
 
+    document.addEventListener("visibilitychange", (event) => {
+        if(document.hidden){
+            alert("Tab Switched");
+        }
+        event.preventDefault();
+    });
+
+
     source.addEventListener('copy', (event) => {
         const selection = document.getSelection();
-        console.log("Copied the text " + selection);
+        alert("Copied the text " + selection);
         event.preventDefault();
     });
 
