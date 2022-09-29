@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2022062200;
+$plugin->version   = 2022062201;
 $plugin->requires  = 2020061500;
 $plugin->cron      = 0;
 $plugin->component = 'quizaccess_sentry';
