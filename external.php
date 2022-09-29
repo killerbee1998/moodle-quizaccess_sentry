@@ -23,7 +23,7 @@
  */
 
 require_once($CFG->libdir . "/externallib.php");
-require_once($CFG->dirroot . "mod\quiz\accessrule\sentry\log_sus_event.php");
+require_once($CFG->dirroot . "mod/quiz/accessrule/sentry/log_sus_event.php");
 
 
 class quizaccess_sentry_external extends external_api {
