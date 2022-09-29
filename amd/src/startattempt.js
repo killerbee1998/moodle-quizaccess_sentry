@@ -19,9 +19,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// import $ from 'jquery';
-
-const source = document.querySelector('body');
 
 export const setup = () => {
 
@@ -33,7 +30,7 @@ export const setup = () => {
     });
 
 
-    source.addEventListener('copy', (event) => {
+    document.addEventListener('copy', (event) => {
         const selection = document.getSelection();
         alert("Copied the text " + selection);
         event.preventDefault();
