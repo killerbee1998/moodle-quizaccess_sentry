@@ -22,8 +22,8 @@
 
 export const setup = () => {
 
-    document.addEventListener("visibilitychange", () => {
-        if(document.hidden){
+    window.addEventListener("visibilitychange", () => {
+        if(window.hidden){
             alert("Tab Switched");
         }
     });
@@ -32,8 +32,8 @@ export const setup = () => {
         alert("Resized");
     }, false);
 
-    document.addEventListener('copy', (event) => {
-        const selection = document.getSelection();
+    window.addEventListener('copy', (event) => {
+        const selection = window.getSelection();
         alert("Copied the text " + selection);
         event.preventDefault();
     });
