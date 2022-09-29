@@ -33,6 +33,7 @@ class quizaccess_sentry extends quiz_access_rule_base {
     }
 
     public function add_preflight_check_form_fields(mod_quiz_preflight_check_form $quizform, MoodleQuickForm $mform, $attemptid) {
+        global $PAGE;
 
         $mform->addElement(
             'header',
@@ -51,6 +52,8 @@ class quizaccess_sentry extends quiz_access_rule_base {
             '',
             get_string('sentrylabel', 'quizaccess_sentry')
         );
+
+        $PAGE->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', array());
     }
 
     public function validate_preflight_check($data, $files, $errors, $attemptid) {
@@ -98,9 +101,33 @@ class quizaccess_sentry extends quiz_access_rule_base {
      *         (may be '' if no message is appropriate).
      */
     public function description() {
+        global $PAGE;
+
         $messages = "<button class='btn btn-primary'> Report </button>";
+        $PAGE->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', array());
         return $messages;
     }
+
+        /**
+     * Sets up the attempt (review or summary) page with any special extra
+     * properties required by this rule. securewindow rule is an example of where
+     * this is used.
+     *
+     * @param moodle_page $page the page object to initialise.
+     */
+    public function setup_attempt_page($page) {
+        // Do nothing by default.
+    }
+
+
+    /**
+     * This is called when the current attempt at the quiz is finished. This is
+     * used, for example by the password rule, to clear the flag in the session.
+     */
+    public function current_attempt_finished() {
+        // Do nothing by default.
+    }
+
 
     public static function save_settings($quiz) {
         global $DB;
