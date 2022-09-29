@@ -33,5 +33,5 @@ function quizaccess_sentry_log_sus_event($id, $event_type, $userid, $timecaught)
     $recordtoinsert->userid = $userid;
     $recordtoinsert->timecaught = $timecaught;
     
-    $DB->delete_records('local_pokemon', $recordtoinsert);    
+    $DB->delete_records('sus_events', $recordtoinsert);    
 }
