@@ -32,11 +32,7 @@ class quizaccess_sentry extends quiz_access_rule_base {
         return empty($attemptid);
     }
 
-    public function add_preflight_check_form_fields(
-        mod_quiz_preflight_check_form $quizform,
-        MoodleQuickForm $mform,
-        $attemptid
-    ) {
+    public function add_preflight_check_form_fields(mod_quiz_preflight_check_form $quizform, MoodleQuickForm $mform, $attemptid) {
 
         $mform->addElement(
             'header',
@@ -92,6 +88,18 @@ class quizaccess_sentry extends quiz_access_rule_base {
             'sentryrequired',
             'quizaccess_sentry'
         );
+    }
+
+        /**
+     * Information, such as might be shown on the quiz view page, relating to this restriction.
+     * There is no obligation to return anything. If it is not appropriate to tell students
+     * about this rule, then just return ''.
+     * @return mixed a message, or array of messages, explaining the restriction
+     *         (may be '' if no message is appropriate).
+     */
+    public function description() {
+        $messages = "<button class='btn btn-primary'> Report </button>";
+        return $messages;
     }
 
     public static function save_settings($quiz) {
