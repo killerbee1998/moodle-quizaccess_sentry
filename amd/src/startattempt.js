@@ -38,12 +38,12 @@ const log_sus_event = (event_type, userid, timecaught) => {
     }).fail(Notification.exception);
 };
 
-export const setup = () => {
+export const setup = (props) => {
 
     window.addEventListener("visibilitychange", () => {
         if (document.hidden) {
             alert("Tab Switched");
-            log_sus_event('Tab switched', 1, 1);
+            log_sus_event('Tab switched', props, Date.now());
         }
     });
 

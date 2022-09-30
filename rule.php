@@ -111,7 +111,8 @@ class quizaccess_sentry extends quiz_access_rule_base {
      * @param moodle_page $page the page object to initialise.
      */
     public function setup_attempt_page($page) {
-        $page->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', array());
+        global $USER;
+        $page->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', array("id"=>$USER->id));
     }
 
 
