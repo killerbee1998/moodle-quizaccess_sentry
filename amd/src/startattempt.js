@@ -19,22 +19,41 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import Ajax from 'core/ajax';
+import $ from 'jquery';
 
 export const setup = () => {
+    let is_sus = false;
 
     window.addEventListener("visibilitychange", () => {
         if (document.hidden) {
             alert("Tab Switched");
+            is_sus = true;
+            let wsfunction = 'quizaccess_sentry_log_sus_event';
+            let params = {
+                'event_type': 'test event',
+                'userid': 2,
+                'timecaught': 12
+            };
+            let request = {
+                methodname: wsfunction,
+                args: params
+            };
+
+            Ajax.call([request])[0].done(function () {
+            }).fail(Notification.exception);
         }
     });
 
     window.addEventListener('resize', () => {
         alert("Resized");
+        is_sus = true;
     });
 
     window.addEventListener('keydown', (event) => {
         if (event.key === "F12") {
             alert("F12 pressed");
+            is_sus = true;
         }
     });
 
@@ -42,6 +61,7 @@ export const setup = () => {
         const selection = window.getSelection();
         alert("Copied the text " + selection);
         event.preventDefault();
+        is_sus = true;
     });
 
 };
