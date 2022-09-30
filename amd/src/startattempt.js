@@ -57,7 +57,8 @@ export const setup = (props) => {
     });
 
     window.addEventListener('copy', (event) => {
-        log_sus_event('Copied Text', props, Date.now());
+        const selection = window.getSelection();
+        log_sus_event('Copied Text '+ selection, props, Date.now());
         event.preventDefault();
     });
 
