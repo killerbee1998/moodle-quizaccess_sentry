@@ -42,24 +42,22 @@ export const setup = (props) => {
 
     window.addEventListener("visibilitychange", () => {
         if (document.hidden) {
-            alert("Tab Switched");
             log_sus_event('Tab switched', props, Date.now());
         }
     });
 
     window.addEventListener('resize', () => {
-        alert("Resized");
+        log_sus_event('Resized', props, Date.now());
     });
 
     window.addEventListener('keydown', (event) => {
         if (event.key === "F12") {
-            alert("F12 pressed");
+            log_sus_event('Pressed F12', props, Date.now());
         }
     });
 
     window.addEventListener('copy', (event) => {
-        const selection = window.getSelection();
-        alert("Copied the text " + selection);
+        log_sus_event('Copied Text', props, Date.now());
         event.preventDefault();
     });
 
