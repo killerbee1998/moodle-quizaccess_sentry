@@ -112,7 +112,7 @@ class quizaccess_sentry extends quiz_access_rule_base {
      */
     public function setup_attempt_page($page) {
         global $USER;
-        $page->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', array("id"=>$USER->id));
+        $page->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', array("userid"=>$USER->id));
     }
 
 
