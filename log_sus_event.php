@@ -32,5 +32,5 @@ function quizaccess_sentry_log_sus_event($event_type, $userid, $timecaught){
     $recordtoinsert->userid = $userid;
     $recordtoinsert->timecaught = $timecaught;
     
-    $DB->delete_records('sus_events', $recordtoinsert);    
+    $DB->insert_record('sus_events', $recordtoinsert);    
 }
