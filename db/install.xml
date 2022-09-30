@@ -10,7 +10,6 @@
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id" />
-                <KEY NAME="userid" TYPE="foreign-unique" FIELDS="userid" REFTABLE="user" REFFIELDS="id" PREVIOUS="primary"/>
             </KEYS>
         </TABLE>
         <TABLE NAME="quizaccess_sentry" COMMENT="Stores the additional setting required by this accessrule">
