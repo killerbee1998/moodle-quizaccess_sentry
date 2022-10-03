@@ -81,12 +81,20 @@ class quizaccess_sentry extends quiz_access_rule_base {
         global $COURSE;
         global $USER;
 
+        $messages = '';
         $context =  context_course::instance($COURSE->id);
         if (is_siteadmin($USER->id) || is_enrolled($context, $USER->id, 'mod/assign:grade', true)) {
-            $messages = "<button class='btn btn-primary'> Report </button>";
-            return $messages;
+            $messages .= "<form method='post' style = 'text-align:left;' action=";
+            $messages .= new moodle_url('/mod/quiz/accessrule/sentry/report.php');
+            $messages .= ">";
+            $messages .= "<input type='submit' name='quizid' value=";
+            $messages .= $this->quiz->id;
+            $messages .= " id='report_btn' style='font-size: 0; line-height: 0; '/>";
+            $messages .= "<label for='report_btn' class='btn btn-warning' style='margin-left: -1rem;'> Report </label>";
+            $messages .= "</form>";
         }
-        
+        return $messages;
+
     }
 
         /**
