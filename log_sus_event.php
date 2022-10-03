@@ -24,12 +24,14 @@
 
 require_once(__DIR__ . '/../../../../config.php');
 
-function quizaccess_sentry_log_sus_event($event_type, $userid, $timecaught){
+function quizaccess_sentry_log_sus_event($event_type, $userid, $courseid, $quizid, $timecaught){
     global $DB;
 
     $recordtoinsert = new stdClass();
     $recordtoinsert->event_type = $event_type;
     $recordtoinsert->userid = $userid;
+    $recordtoinsert->quizid = $quizid;
+    $recordtoinsert->courseid = $courseid;
     $recordtoinsert->timecaught = $timecaught;
     
     $DB->insert_record('sus_events', $recordtoinsert);    
