@@ -38,6 +38,8 @@ class quizaccess_sentry_external extends external_api {
             array(
                 'event_type' => new external_value(PARAM_TEXT, 'event_type'),
                 'userid' => new external_value(PARAM_INT, 'userid'),
+                'courseid' => new external_value(PARAM_INT, 'userid'),
+                'quizid' => new external_value(PARAM_INT, 'userid'),
                 'timecaught' => new external_value(PARAM_INT, 'timecaught')
             )
         );
@@ -51,16 +53,18 @@ class quizaccess_sentry_external extends external_api {
      * @return array
      * @throws moodle_exception
      */
-    public static function log_sus_event($event_type, $userid, $timecaught): array {
+    public static function log_sus_event($event_type, $userid, $courseid, $quizid,  $timecaught): array {
         global $DB;
 
         $warnings = array();
 
-        quizaccess_sentry_log_sus_event($event_type, $userid, $timecaught);
+        quizaccess_sentry_log_sus_event($event_type, $userid,$courseid, $quizid, $timecaught);
 
         return array(
             'event_type' => $event_type,
             'userid' => $userid,
+            'courseid' => $courseid,
+            'quizid' => $quizid,
             'timecaught' => $timecaught,
             'warnings' => $warnings
         );
@@ -77,6 +81,8 @@ class quizaccess_sentry_external extends external_api {
             array(
                 'event_type' => new external_value(PARAM_TEXT, 'event_type'),
                 'userid' => new external_value(PARAM_INT, 'userid'),
+                'courseid' => new external_value(PARAM_INT, 'courseid'),
+                'quizid' => new external_value(PARAM_INT, 'quizid'),
                 'timecaught' => new external_value(PARAM_INT, 'timecaught'),
                 'warnings' => new external_warnings()
             )
