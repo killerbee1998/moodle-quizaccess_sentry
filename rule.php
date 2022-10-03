@@ -70,26 +70,6 @@ class quizaccess_sentry extends quiz_access_rule_base {
         return new self($quizobj, $timenow);
     }
 
-    public static function add_settings_form_fields(
-        mod_quiz_mod_form $quizform,
-        MoodleQuickForm $mform
-    ) {
-        $mform->addElement(
-            'select',
-            'sentryrequired',
-            get_string('sentryrequired', 'quizaccess_sentry'),
-            array(
-                0 => get_string('notrequired', 'quizaccess_sentry'),
-                1 => get_string('sentryrequiredoption', 'quizaccess_sentry'),
-            )
-        );
-        $mform->addHelpButton(
-            'sentryrequired',
-            'sentryrequired',
-            'quizaccess_sentry'
-        );
-    }
-
         /**
      * Information, such as might be shown on the quiz view page, relating to this restriction.
      * There is no obligation to return anything. If it is not appropriate to tell students
@@ -112,7 +92,13 @@ class quizaccess_sentry extends quiz_access_rule_base {
      */
     public function setup_attempt_page($page) {
         global $USER;
-        $page->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', array("userid"=>$USER->id));
+        global $COURSE;
+
+        $props = [];
+        $props["userid"] = $USER->id;
+        $props["courseid"] = $COURSE->id;
+        $props["quizid"] = $this->quiz->id;
+        $page->requires->js_call_amd('quizaccess_sentry/startattempt', 'setup', [$props]);
     }
 
 
@@ -124,6 +110,25 @@ class quizaccess_sentry extends quiz_access_rule_base {
         // Do nothing by default.
     }
 
+    public static function add_settings_form_fields(
+        mod_quiz_mod_form $quizform,
+        MoodleQuickForm $mform
+    ) {
+        $mform->addElement(
+            'select',
+            'sentryrequired',
+            get_string('sentryrequired', 'quizaccess_sentry'),
+            array(
+                0 => get_string('notrequired', 'quizaccess_sentry'),
+                1 => get_string('sentryrequiredoption', 'quizaccess_sentry'),
+            )
+        );
+        $mform->addHelpButton(
+            'sentryrequired',
+            'sentryrequired',
+            'quizaccess_sentry'
+        );
+    }
 
     public static function save_settings($quiz) {
         global $DB;

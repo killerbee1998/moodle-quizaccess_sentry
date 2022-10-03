@@ -21,11 +21,14 @@
 
 import Ajax from 'core/ajax';
 
-const log_sus_event = (event_type, userid, timecaught) => {
+const log_sus_event = (event_type, props, timecaught) => {
+
     let wsfunction = 'quizaccess_sentry_log_sus_event';
     let params = {
         'event_type': event_type,
-        'userid': userid,
+        'userid': props.userid,
+        'courseid': props.courseid,
+        'quizid': props.quizid,
         'timecaught': timecaught
     };
 
@@ -33,7 +36,6 @@ const log_sus_event = (event_type, userid, timecaught) => {
         methodname: wsfunction,
         args: params
     };
-
     Ajax.call([request])[0].done(function () {
     }).fail(Notification.exception);
 };
