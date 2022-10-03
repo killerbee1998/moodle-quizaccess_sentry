@@ -78,9 +78,15 @@ class quizaccess_sentry extends quiz_access_rule_base {
      *         (may be '' if no message is appropriate).
      */
     public function description() {
+        global $COURSE;
+        global $USER;
 
-        $messages = "<button class='btn btn-primary'> Report </button>";
-        return $messages;
+        $context =  context_course::instance($COURSE->id);
+        if (is_siteadmin($USER->id) || is_enrolled($context, $USER->id, 'mod/assign:grade', true)) {
+            $messages = "<button class='btn btn-primary'> Report </button>";
+            return $messages;
+        }
+        
     }
 
         /**
