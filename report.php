@@ -35,7 +35,9 @@ echo $OUTPUT->header();
 $templatecontext = (object)[
 ];
 
-$records = $DB->get_records('sus_events', array('quizid' => $_POST['quizid']));
+$quizid = required_param('quizid', PARAM_INT);
+
+$records = $DB->get_records('sus_events', array('quizid' => $quizid));
 
 echo "<h1> Report of Violations</h1>";
 
@@ -49,11 +51,9 @@ foreach($records as $record){
     echo "<tr >";
     echo "<th scope='row'>" . $record->userid. "</th>";
     echo "<td >" . $record->event_type. "</td>";
-    echo "<td >" . gmdate("F j, Y, g:i a", $record->timecaught). "</td>";
+    echo "<td >" . gmdate("F j, Y, g:i a", $record->timecaught/1000). "</td>";
     echo "</tr>";
 }
 echo "</table>";
-
-$OUTPUT->render_from_template('quizaccess_sentry/report', $templatecontext);
 
 echo $OUTPUT->footer();
