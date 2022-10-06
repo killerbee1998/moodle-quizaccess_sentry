@@ -27,6 +27,8 @@ You can download this plugin from [Github](https://github.com/killerbee1998/mood
 > Teacher View:
 <img width="100%" alt="2  Attempt Quiz" src="readme_resources\Teacher.png">
 
+>Report Page View
+<img width="100%" alt="2  Attempt Quiz" src="readme_resources\Report.png">
 
 > Student View:
 <img width="100%" alt="2  Attempt Quiz" src="readme_resources\Student.png">
