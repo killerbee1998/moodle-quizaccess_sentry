@@ -147,26 +147,26 @@ class quizaccess_sentry extends quiz_access_rule_base {
     public static function save_settings($quiz) {
         global $DB;
         if (empty($quiz->sentryrequired)) {
-            $DB->delete_records('quizaccess_sentry', array('quizid' => $quiz->id));
+            $DB->delete_records('config_quizaccess_sentry', array('quizid' => $quiz->id));
         } else {
-            if (!$DB->record_exists('quizaccess_sentry', array('quizid' => $quiz->id))) {
+            if (!$DB->record_exists('config_quizaccess_sentry', array('quizid' => $quiz->id))) {
                 $record = new stdClass();
                 $record->quizid = $quiz->id;
                 $record->sentryrequired = 1;
-                $DB->insert_record('quizaccess_sentry', $record);
+                $DB->insert_record('config_quizaccess_sentry', $record);
             }
         }
     }
 
     public static function delete_settings($quiz) {
         global $DB;
-        $DB->delete_records('quizaccess_sentry', array('quizid' => $quiz->id));
+        $DB->delete_records('config_quizaccess_sentry', array('quizid' => $quiz->id));
     }
 
     public static function get_settings_sql($quizid) {
         return array(
             'sentryrequired',
-            'LEFT JOIN {quizaccess_sentry} sentry ON sentry.quizid = quiz.id',
+            'LEFT JOIN {config_quizaccess_sentry} sentry ON sentry.quizid = quiz.id',
             array()
         );
     }
