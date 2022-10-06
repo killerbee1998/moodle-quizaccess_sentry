@@ -22,14 +22,14 @@ You can download this plugin from [Github](https://github.com/killerbee1998/mood
 ```
 
 
-<img width="100%" alt="4  Proctoring settings" src="C:\laragon\www\moodle\mod\quiz\accessrule\sentry\readme_resources\Settings.png">
+<img width="100%" alt="4  Proctoring settings" src="readme_resources\Settings.png">
 
 > Teacher View:
-<img width="100%" alt="2  Attempt Quiz" src="C:\laragon\www\moodle\mod\quiz\accessrule\sentry\readme_resources\Teacher.png">
+<img width="100%" alt="2  Attempt Quiz" src="readme_resources\Teacher.png">
 
 
 > Student View:
-<img width="100%" alt="2  Attempt Quiz" src="C:\laragon\www\moodle\mod\quiz\accessrule\sentry\readme_resources\Student.png">
+<img width="100%" alt="2  Attempt Quiz" src="readme_resources\Student.png">
 
 ## License
 
