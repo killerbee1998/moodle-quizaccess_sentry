@@ -27,6 +27,8 @@ You can download this plugin from [Github](https://github.com/killerbee1998/mood
 > Teacher View:
 <img width="100%" alt="2  Attempt Quiz" src="readme_resources\Teacher.png">
 
+A Full report of all suspicious events in any quiz can be viewed by clicking the Report button in the quiz description. This report button is only available for Teachers and Site Admins.
+
 >Report Page View
 <img width="100%" alt="2  Attempt Quiz" src="readme_resources\Report.png">
 
