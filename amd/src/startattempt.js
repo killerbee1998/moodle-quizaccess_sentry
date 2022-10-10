@@ -48,8 +48,16 @@ export const setup = (props) => {
         }
     });
 
-    window.addEventListener('resize', () => {
-        log_sus_event('Resized', props, Date.now());
+    let already_resized = false;
+    window.addEventListener('resize', async () => {
+        if(!already_resized){
+            log_sus_event('Resized', props, Date.now());
+            already_resized = true;
+        }
+
+        setTimeout(() => {
+            already_resized = false;
+        }, 3000);
     });
 
     window.addEventListener('keydown', (event) => {
@@ -60,7 +68,7 @@ export const setup = (props) => {
 
     window.addEventListener('copy', (event) => {
         const selection = window.getSelection();
-        log_sus_event('Copied Text '+ selection, props, Date.now());
+        log_sus_event('Copied Text ' + selection, props, Date.now());
         event.preventDefault();
     });
 
